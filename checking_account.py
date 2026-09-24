@@ -7,14 +7,14 @@ class CheckingAccount(BankAccount):
 
     def transfer(self, amount, target_account):
         if amount > self.transfer_limit:
-            print(f"Transfer denied: Exceeds the ${self.transfer_limit:.2f} limit.")
+            print(f"[{self.customer_name}] Transfer denied: ${amount:.2f} exceeds the transfer limit of ${self.transfer_limit:.2f}.")
             return False
         
-        print(f"Attempting transfer of ${amount:.2f} to {target_account.customer_name}...")
+        print(f"[{self.customer_name}] Attempting transfer of ${amount:.2f} to {target_account.customer_name}...")
         if self.withdraw(amount):
             target_account.deposit(amount)
-            print("Transfer completed successfully.")
+            print(f"Transfer of ${amount:.2f} to {target_account.customer_name} completed successfully.")
             return True
         else:
-            print("Transfer failed.")
+            print("Transfer failed: Insufficient funds or minimum balance violated.")
             return False

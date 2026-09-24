@@ -7,6 +7,6 @@ class SavingsAccount(BankAccount):
 
     def apply_interest(self):
         interest_amount = self.current_balance * self.interest_rate
-        self.deposit(interest_amount)
-        print(f"Interest applied at {self.interest_rate * 100}%. Earned: ${interest_amount:.2f}")
+        self.current_balance += interest_amount
+        print(f"[{self.customer_name}] Interest applied at {self.interest_rate * 100:.1f}%. Earned: ${interest_amount:.2f}. New Balance: ${self.current_balance:.2f}")
         return interest_amount
